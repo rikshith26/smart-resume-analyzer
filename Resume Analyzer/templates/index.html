@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Resume Analyzer</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f7f8;
+            padding: 40px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 700px;
+            margin: auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        input[type="file"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .result {
+            background: #ecf0f1;
+            padding: 20px;
+            margin-top: 30px;
+            border-left: 6px solid #3498db;
+            border-radius: 8px;
+            max-width: 700px;
+            margin: 30px auto 0;
+        }
+        .score {
+            font-size: 22px;
+            font-weight: bold;
+            color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <h1>Smart Resume Analyzer</h1>
+    <form method="post" enctype="multipart/form-data">
+        <label for="resume">Upload Resume (PDF):</label>
+        <input type="file" name="resume" required>
+
+        <label for="job_desc">Paste Job Description:</label>
+        <textarea name="job_desc" rows="10" placeholder="Paste job description here..." required></textarea>
+
+        <button type="submit">Analyze Resume</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <p class="score">Match Score: {{ result.score }}%</p>
+        <p><strong>Resume Snippet:</strong></p>
+        <p>{{ result.resume_text }}</p>
+    </div>
+    {% endif %}
+</body>
+</html>
